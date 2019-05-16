@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Solid Profile Editor</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/n3.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Solid Profile Editor</h1>
+    </header>
+    <br/>
+    <main>
+        <h2>Log In</h2>
+        <div class="login">
+            <p>
+                <span id="loggedIn">You are not logged in</span>
+            </p>
+            <input type="button" id="login" value="Log in with solid account">
+        </div>
+        <br/>
+        <br/>
+        <h2>Change solid user information</h2>
+        <form>
+            <p>
+                <label for="firstname">First Name: </label>
+                <input type="text" id="firstname" />
+            </p>
+            <p>
+                <label for="lastname">Last Name: </label>
+                <input type="text" id="lastname" />
+            </p>
+            <p>
+                <label for="email">Email address: </label>
+                <input type="text" id="email" />
+            </p>
+            <p>
+                <label for="pfpic">Profile picture URL: </label>
+                <input type="text" id="pfpic" />
+            </p>
+            <p>
+                <input type="submit" id="accept" value="Accept" />
+            </p>
+        </form>
+    </main>
+    <script>
+        const elements = {};
+        ['loggedIn', 'login', 'firstname', 'lastname', 'email', 'pfpic', 'submit'].forEach( name =>
+            elements[name] = document.getElementById(name));
+
+        elements.send.addEventListener('submit', async () => {
+                 // Obtain the user's identity
+                     const session = await SolidAuthClient.currentSession();
+                 if (!session) {
+                       alert('You need to log in first.');
+                       return;
+                 }
+    </script>
+</body>
+</html>
